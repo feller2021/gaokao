@@ -1,0 +1,42 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: 'gaokao_py'
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '00 12 20 6 *' # 定义 cron 表达式
+  watch:
+    types: [started] # 定义star是自动发送
+
+  workflow_dispatch:
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - name: 'Install dependencies1'
+      run: python -m pip install --upgrade pip
+    - name: 'Install dependencies2'
+      run: pip install -r requirements.txt
+    - name: '开始运行gaokao.py'
+      run: python gaokao.py
+    - name: commit
+      run: |
+        git config --global user.email 2222@qq.com
+        git config --global user.name feller
+        git add .
+        git commit -m "update" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
