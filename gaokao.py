@@ -109,8 +109,9 @@ def save_pic():  ## 最终保存图片
 
         filename = os.path.basename(i)
         print(filename)
+        urll="https://www.hneeb.cn/hnxxg/uploadfiles/202306/"+i
 
-        r = requests.get(i, stream=True)
+        r = requests.get(urll, stream=True)
         with open(filename, 'wb') as fd:
             for chunk in r.iter_content():
                 fd.write(chunk)
