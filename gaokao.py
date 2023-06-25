@@ -89,7 +89,7 @@ def get_pic_clear():  ## 去掉不需要的图片
     lastlist = []
 
     ishttp = "http"
-    laodizhi = "http://jyt.hunan.gov.cn/jyt/sjyt/hnsjyksy/web/ksyzkzx/202106/"
+    laodizhi = "http://jyt.hunan.gov.cn/jyt/sjyt/hnsjyksy/web/ksyzkzx/202306/"
     for i in list_tu:
         for j in i:
             if ishttp in j:
